@@ -56,6 +56,8 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .antMatchers("/api/channels/**")
                 .authenticated()
+                .antMatchers("api/messages/**")
+                .authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
