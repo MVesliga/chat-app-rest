@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/api/messages", produces = "application/json")
@@ -35,5 +36,12 @@ public class MessageRestController {
         messageRepository.save(saveMessage);
 
         return new ResponseEntity<>(saveMessage, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/findAll/{channelId}")
+    public ResponseEntity<?> findAllMessagesByChannelId(@PathVariable("channelId") String channelId){
+        List<Message> messages = messageRepository.findByChannelIdLike(channelId);
+        
+        return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 }
