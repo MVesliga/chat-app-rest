@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 
@@ -15,12 +16,12 @@ public class Message {
     private String channelId;
 
     private String messageContent;
-    private LocalTime timestamp;
+    private LocalDateTime timestamp;
     private User user;
 
     public Message() {}
 
-    public Message(ObjectId id, String channelId, String messageContent, LocalTime timestamp, User user) {
+    public Message(ObjectId id, String channelId, String messageContent, LocalDateTime timestamp, User user) {
         this.id = id;
         this.channelId = channelId;
         this.messageContent = messageContent;
@@ -52,11 +53,11 @@ public class Message {
         this.messageContent = messageContent;
     }
 
-    public LocalTime getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalTime timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

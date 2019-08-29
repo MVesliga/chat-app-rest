@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class MessageRestController {
         saveMessage.setMessageContent(message.getMessageContent());
         saveMessage.setUser(message.getUser());
         ZonedDateTime zonedDateTimeNow = ZonedDateTime.now();
-        saveMessage.setTimestamp(LocalTime.now());
+        saveMessage.setTimestamp(LocalDateTime.now());
 
         messageRepository.save(saveMessage);
 
@@ -41,7 +42,7 @@ public class MessageRestController {
     @GetMapping("/findAll/{channelId}")
     public ResponseEntity<?> findAllMessagesByChannelId(@PathVariable("channelId") String channelId){
         List<Message> messages = messageRepository.findByChannelIdLike(channelId);
-        
+
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 }
