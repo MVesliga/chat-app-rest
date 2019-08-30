@@ -1,5 +1,6 @@
 package com.example.chatapp.controllers;
 
+import com.example.chatapp.model.ChatMessage;
 import com.example.chatapp.model.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -10,12 +11,18 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
+    @MessageMapping("/chat.register")
+    @SendTo("/topic/public")
+    public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        return chatMessage;
+    }
+
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public Message sendMessage(@Payload Message message){
-
-        System.out.println(message.getMessageContent());
-        return message;
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage){
+        //System.out.println(message.getMessageContent());
+        return chatMessage;
     }
 
     /*@MessageMapping("/chat.addUser")
