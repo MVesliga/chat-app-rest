@@ -42,7 +42,6 @@ public class ChannelRestController {
                 Channel saveChannel = new Channel();
                 saveChannel.setChannelName(channel.getChannelName().toLowerCase());
                 saveChannel.setChannelDescription(StringUtils.capitalize(channel.getChannelDescription()));
-                //User user = userRepository.findByUsername(channel.getUser().getUsername()).get();
                 saveChannel.setUser(channel.getUser());
                 saveChannel.setCreationDate(new Date());
                 saveChannel.setId(ObjectId.get());

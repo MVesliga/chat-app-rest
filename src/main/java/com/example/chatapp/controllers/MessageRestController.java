@@ -31,7 +31,6 @@ public class MessageRestController {
         saveMessage.setChannelId(message.getChannelId());
         saveMessage.setMessageContent(message.getMessageContent());
         saveMessage.setUser(message.getUser());
-        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now();
         saveMessage.setTimestamp(LocalDateTime.now());
 
         messageRepository.save(saveMessage);
