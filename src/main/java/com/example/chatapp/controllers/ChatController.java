@@ -59,7 +59,7 @@ public class ChatController {
     }
 
     @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
+    @SendTo("/topic/sendMessage")
     public Message sendMessage(@Payload Message message){
         Message saveMessage = new Message();
         saveMessage.setId(ObjectId.get());
