@@ -14,7 +14,7 @@ public class Channel {
     private ObjectId id;
     private String channelName;
     private String channelDescription;
-    @JsonProperty("created by")
+    @JsonProperty("createdBy")
     private User user;
     private Date creationDate;
 
@@ -52,7 +52,7 @@ public class Channel {
         this.channelDescription = channelDescription;
     }
 
-    @JsonProperty("created by")
+    @JsonProperty("createdBy")
     public User getUser() {
         return user;
     }
