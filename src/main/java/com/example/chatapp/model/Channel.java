@@ -52,7 +52,7 @@ public class Channel {
         this.channelDescription = channelDescription;
     }
 
-    @JsonProperty("createdBy")
+    @JsonProperty("createdB y")
     public User getUser() {
         return user;
     }
