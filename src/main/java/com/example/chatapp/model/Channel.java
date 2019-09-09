@@ -1,5 +1,6 @@
 package com.example.chatapp.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -52,7 +53,7 @@ public class Channel {
         this.channelDescription = channelDescription;
     }
 
-    @JsonProperty("createdB y")
+    @JsonProperty("createdBy")
     public User getUser() {
         return user;
     }

@@ -1,7 +1,6 @@
 package com.example.chatapp.controllers;
 
 import com.example.chatapp.model.Channel;
-import com.example.chatapp.model.ChatMessage;
 import com.example.chatapp.model.Message;
 import com.example.chatapp.repositories.ChannelRepository;
 import com.example.chatapp.repositories.MessageRepository;
@@ -13,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
-public class ChatController {
+public class ChatController{
 
     @Autowired
     private MessageRepository messageRepository;
@@ -61,6 +60,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/sendMessage")
     public Message sendMessage(@Payload Message message){
+        System.out.println(message.getMessageContent());
         Message saveMessage = new Message();
         saveMessage.setId(ObjectId.get());
         saveMessage.setChannelId(message.getChannelId());
@@ -72,10 +72,4 @@ public class ChatController {
 
         return saveMessage;
     }
-
-    /*@MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public Message addUser(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
-        return message;
-    }*/
 }

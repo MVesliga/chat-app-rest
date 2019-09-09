@@ -1,5 +1,6 @@
 package com.example.chatapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -9,13 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    @JsonIgnore
     private ObjectId id;
     private String firstName;
     private String lastName;
     private String username;
     private String email;
-    @JsonIgnore
     private String password;
     private String imgUrl;
     private String role;
