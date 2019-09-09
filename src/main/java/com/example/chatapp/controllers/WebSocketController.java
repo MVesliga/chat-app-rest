@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
-public class ChatController{
+public class WebSocketController {
 
     @Autowired
     private MessageRepository messageRepository;

@@ -29,34 +29,4 @@ public class ChannelRestController {
     public List<Channel> getAllChannels(){
         return channelRepository.findAll();
     }
-
-    @PostMapping("/add")
-    public ResponseEntity<?> addChannel(@RequestBody Channel channel){
-        Optional<Channel> channelOptional = channelRepository.findByChannelName(channel.getChannelName());
-        channel.setId(ObjectId.get());
-        if(!channelOptional.isPresent()){
-            if(channel.getChannelName().contains(" ")){
-                return new ResponseEntity<>("Channel name can't contain blank spaces!", HttpStatus.BAD_REQUEST);
-            }
-            else {
-                Channel saveChannel = new Channel();
-                saveChannel.setChannelName(channel.getChannelName().toLowerCase());
-                saveChannel.setChannelDescription(StringUtils.capitalize(channel.getChannelDescription()));
-                saveChannel.setUser(channel.getUser());
-                saveChannel.setCreationDate(new Date());
-                saveChannel.setId(ObjectId.get());
-                channelRepository.save(saveChannel);
-                return new ResponseEntity<>(saveChannel, HttpStatus.CREATED);
-            }
-        }
-        else{
-            if(channel.getChannelName().contains(" ")){
-                return new ResponseEntity<>("Channel name can't contain blank spaces!", HttpStatus.BAD_REQUEST);
-            }
-            else{
-                return new ResponseEntity<>("Channel with that name already exists!", HttpStatus.BAD_REQUEST);
-            }
-        }
-
-    }
 }
