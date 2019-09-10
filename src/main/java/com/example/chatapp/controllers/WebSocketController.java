@@ -2,8 +2,10 @@ package com.example.chatapp.controllers;
 
 import com.example.chatapp.model.Channel;
 import com.example.chatapp.model.Message;
+import com.example.chatapp.model.PrivateMessage;
 import com.example.chatapp.repositories.ChannelRepository;
 import com.example.chatapp.repositories.MessageRepository;
+import com.example.chatapp.repositories.PrivateMessageRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
@@ -26,6 +29,8 @@ public class WebSocketController {
     private MessageRepository messageRepository;
     @Autowired
     private ChannelRepository channelRepository;
+    @Autowired
+    private PrivateMessageRepository privateMessageRepository;
 
     @MessageMapping("/chat.addChannel")
     @SendTo("/topic/addChannel")
@@ -60,7 +65,6 @@ public class WebSocketController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/sendMessage")
     public Message sendMessage(@Payload Message message){
-        System.out.println(message.getMessageContent());
         Message saveMessage = new Message();
         saveMessage.setId(ObjectId.get());
         saveMessage.setChannelId(message.getChannelId());
@@ -71,5 +75,20 @@ public class WebSocketController {
         messageRepository.save(saveMessage);
 
         return saveMessage;
+    }
+
+    @MessageMapping("/chat.sendPrivateMessage")
+    @SendTo("/topic/sendPrivateMessage")
+    public PrivateMessage sendPrivateMessage(@Payload PrivateMessage privateMessage){
+        PrivateMessage savePrivateMessage = new PrivateMessage();
+        savePrivateMessage.setId(ObjectId.get());
+        savePrivateMessage.setFrom(privateMessage.getFrom());
+        savePrivateMessage.setTo(privateMessage.getTo());
+        savePrivateMessage.setMessageContent(privateMessage.getMessageContent());
+        savePrivateMessage.setTimestamp(LocalDateTime.now());
+
+        privateMessageRepository.save(savePrivateMessage);
+
+        return savePrivateMessage;
     }
 }
