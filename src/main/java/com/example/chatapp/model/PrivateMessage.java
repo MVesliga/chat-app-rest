@@ -11,17 +11,17 @@ public class PrivateMessage {
     @Id
     private ObjectId id;
 
-    private String from;
-    private String to;
+    private User fromUser;
+    private User toUser;
     private String messageContent;
     private LocalDateTime timestamp;
 
     public PrivateMessage() {}
 
-    public PrivateMessage(ObjectId id, String from, String to, String messageContent, LocalDateTime timestamp) {
+    public PrivateMessage(ObjectId id, User fromUser, User toUser, String messageContent, LocalDateTime timestamp) {
         this.id = id;
-        this.from = from;
-        this.to = to;
+        this.fromUser = fromUser;
+        this.toUser = toUser;
         this.messageContent = messageContent;
         this.timestamp = timestamp;
     }
@@ -34,20 +34,20 @@ public class PrivateMessage {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public User getFromUser() {
+        return fromUser;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromUser(User fromUser) {
+        this.fromUser = fromUser;
     }
 
-    public String getTo() {
-        return to;
+    public User getToUser() {
+        return toUser;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setToUser(User toUser) {
+        this.toUser = toUser;
     }
 
     public String getMessageContent() {

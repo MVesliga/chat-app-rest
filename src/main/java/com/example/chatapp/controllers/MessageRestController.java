@@ -36,9 +36,9 @@ public class MessageRestController {
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 
-    @GetMapping("/privateMessages/findAll/{from}/{to}")
-    public ResponseEntity<?> findAllPrivateMessagesFromTo(@PathVariable("from") String from, @PathVariable("to") String to){
-        List<PrivateMessage> privateMessages = privateMessageRepository.findByFromLikeAndToLike(from, to);
+    @GetMapping("/privateMessages/findAll")
+    public ResponseEntity<?> findAllPrivateMessagesFromTo(){
+        List<PrivateMessage> privateMessages = privateMessageRepository.findAll();
 
         return new ResponseEntity<>(privateMessages, HttpStatus.OK);
     }
