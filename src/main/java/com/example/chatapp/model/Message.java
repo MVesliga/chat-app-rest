@@ -15,15 +15,19 @@ public class Message {
     private ObjectId id;
     private String channelId;
 
+    private boolean image;
+    private String imageUrl;
     private String messageContent;
     private LocalDateTime timestamp;
     private User user;
 
     public Message() {}
 
-    public Message(ObjectId id, String channelId, String messageContent, LocalDateTime timestamp, User user) {
+    public Message(ObjectId id, String channelId, boolean image, String imageUrl, String messageContent, LocalDateTime timestamp, User user) {
         this.id = id;
         this.channelId = channelId;
+        this.image = image;
+        this.imageUrl = imageUrl;
         this.messageContent = messageContent;
         this.timestamp = timestamp;
         this.user = user;
@@ -39,6 +43,22 @@ public class Message {
 
     public String getChannelId() {
         return channelId;
+    }
+
+    public boolean isImage() {
+        return image;
+    }
+
+    public void setImage(boolean image) {
+        this.image = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public void setChannelId(String channelId) {

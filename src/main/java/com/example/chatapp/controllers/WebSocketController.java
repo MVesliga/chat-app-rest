@@ -68,11 +68,15 @@ public class WebSocketController {
         Message saveMessage = new Message();
         saveMessage.setId(ObjectId.get());
         saveMessage.setChannelId(message.getChannelId());
+        saveMessage.setImage(message.isImage());
+        saveMessage.setImageUrl(message.getImageUrl());
         saveMessage.setMessageContent(message.getMessageContent());
         saveMessage.setUser(message.getUser());
         saveMessage.setTimestamp(LocalDateTime.now());
 
-        messageRepository.save(saveMessage);
+        //messageRepository.save(saveMessage);
+
+        System.out.println(saveMessage.getMessageContent());
 
         return saveMessage;
     }
