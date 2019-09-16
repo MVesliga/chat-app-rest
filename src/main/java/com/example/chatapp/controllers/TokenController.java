@@ -1,12 +1,10 @@
 package com.example.chatapp.controllers;
 
-import com.example.chatapp.model.JwtUser;
 import com.example.chatapp.model.User;
 import com.example.chatapp.model.UserCredentials;
 import com.example.chatapp.repositories.UserRepository;
 import com.example.chatapp.security.JwtGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

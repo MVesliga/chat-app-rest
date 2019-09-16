@@ -3,7 +3,6 @@ package com.example.chatapp.controllers;
 import com.example.chatapp.model.User;
 import com.example.chatapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
