@@ -84,6 +84,7 @@ public class WebSocketController {
         savePrivateMessage.setId(ObjectId.get());
         savePrivateMessage.setFromUser(privateMessage.getFromUser());
         savePrivateMessage.setToUser(privateMessage.getToUser());
+        savePrivateMessage.setImageUrl(privateMessage.getImageUrl());
         savePrivateMessage.setMessageContent(privateMessage.getMessageContent());
         savePrivateMessage.setTimestamp(LocalDateTime.now());
 

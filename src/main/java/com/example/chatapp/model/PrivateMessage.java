@@ -13,15 +13,17 @@ public class PrivateMessage {
 
     private User fromUser;
     private User toUser;
+    private String imageUrl;
     private String messageContent;
     private LocalDateTime timestamp;
 
     public PrivateMessage() {}
 
-    public PrivateMessage(ObjectId id, User fromUser, User toUser, String messageContent, LocalDateTime timestamp) {
+    public PrivateMessage(ObjectId id, User fromUser, User toUser,String imageUrl, String messageContent, LocalDateTime timestamp) {
         this.id = id;
         this.fromUser = fromUser;
         this.toUser = toUser;
+        this.imageUrl = imageUrl;
         this.messageContent = messageContent;
         this.timestamp = timestamp;
     }
@@ -48,6 +50,14 @@ public class PrivateMessage {
 
     public void setToUser(User toUser) {
         this.toUser = toUser;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getMessageContent() {
