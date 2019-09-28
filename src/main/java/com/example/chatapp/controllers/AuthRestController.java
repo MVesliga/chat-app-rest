@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/auth", produces = "application/json")
 @CrossOrigin
-public class AuthRestControler {
+public class AuthRestController {
 
     @Autowired
     private UserRepository userRepository;
